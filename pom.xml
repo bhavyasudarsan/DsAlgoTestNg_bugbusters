@@ -3,4 +3,34 @@
   <groupId>DsAlgoTestNg_bugbusters</groupId>
   <artifactId>DsAlgoTestNg_bugbusters</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+      <dependencies>
+<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.32</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			
+			
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.6</version>
+		</dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.4.0</version> <!-- or any latest version -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.30.0</version>
+		</dependency>
+
+
+       
+        
+
+    </dependencies>
 </project>
