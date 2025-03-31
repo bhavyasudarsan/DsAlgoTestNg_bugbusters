@@ -9,6 +9,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import dsAlgo_BaseClass.BaseClass;
+import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_PageFactory.LinkedList_PageFactory;
 
 public class LinkedList_TestClass extends BaseClass {
@@ -21,31 +22,25 @@ public class LinkedList_TestClass extends BaseClass {
 	//, { "Types of Linked List" },{ "Implement Linked List in Pytho" }, { "Traversal" }, { "Insertion" }, { "Deletion" }
 
 	private static final Logger logger = LoggerFactory.getLogger(LinkedList_PageFactory.class);
-	
-	
-	
-	@BeforeMethod
+		
+	@BeforeMethod(description="User Login")
 	public void test() {
 		logger.info("User is in the Linked List page");
 		linkedList = new LinkedList_PageFactory();
 		linkedList.ClickGetStBtn();
-		linkedList.SignBtn();
-		linkedList.username("bugbusters");
-		linkedList.password("Team@bug");
+		linkedList.SignBtn();      
+		linkedList.username( Driver_Factory.configReader.getUsername());
+		linkedList.password(Driver_Factory.configReader.getPassword());
 		linkedList.Loginbtn();
 	}
-
-	
-
-	@Test(priority = 2, description = "Verify that user is able to navigate to \\\"Linked List\\\" by using start button")
+	@Test(priority = 1, description = "Verify that user is able to navigate to \\\"Linked List\\\" by using start button")
 	public void user_clicks_the_button_in_the_linked_list_panel_for_linked_list() {
 		linkedList.clcikGetStartedLinkedListBtn();
 		assertEquals("Linked List", linkedList.titleLinkedList());
 		logger.info("User is in the Linked List page");
-
 	}
 
-	@Test(priority = 3, dataProvider = "stringData")
+	@Test(priority = 2, dataProvider = "stringData")
 	public void userr_clicks_the_button_for_lists(String string) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		switch (string) {
@@ -78,5 +73,7 @@ public class LinkedList_TestClass extends BaseClass {
 			linkedList.deletionClick();
 		}
 	}
+	
+	
 
 }
