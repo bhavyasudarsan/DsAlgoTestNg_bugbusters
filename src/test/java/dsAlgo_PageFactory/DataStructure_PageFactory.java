@@ -138,6 +138,15 @@ public class DataStructure_PageFactory {
 		}
 	}
 	
+	public void Alertaccept() {
+		 try {
+			 driver.switchTo().alert().accept();
+		 }
+		 catch (NoAlertPresentException e) {
+			 //No alert found.
+		 }
+	 }
+	
 	public void inputEditor(String code) {
 
 		Actions actions = new Actions(driver);
