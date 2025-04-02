@@ -2,26 +2,30 @@ package dsAlgo_TestClasses;
 
 import org.testng.annotations.Test;
 import dsAlgo_BaseClass.BaseClass;
+import dsAlgo_DriverFactory.Driver_Factory;
 import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
-
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import dsAlgo_PageFactory.DataStructure_PageFactory;
 import dsAlgo_TestClasses.DataStructure_TestClass;
+import dsAlgo_Utilities.ExcelReader;
 
 public class DataStructure_TestClass extends BaseClass {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DataStructure_TestClass.class);
 	DataStructure_PageFactory dataStructure_PF;
+	String expectedResult;
+	String inputText;
 	
 	@DataProvider (name = "tryEditor_dataProvider")
 	public Object[][] tryEditor_dataProvider(){
 		
-		return new Object[][] {{1},{2},{3}};
+		return new Object[][] {{"Editor",2},{"Editor",1},{"Editor",3}};
 	}
 	
 	@BeforeMethod
@@ -30,8 +34,7 @@ public class DataStructure_TestClass extends BaseClass {
 		dataStructure_PF = new DataStructure_PageFactory();
 		dataStructure_PF.ClickGetStBtn();
 		dataStructure_PF.SignBtn();
-	//	dataStructure_PF.Login("Login");
-		dataStructure_PF.enterCredentials("bugbusters","Team@bug");
+		dataStructure_PF.enterCredentials(Driver_Factory.configReader.getUsername(), Driver_Factory.configReader.getPassword());
 		dataStructure_PF.Loginbtn();
 		dataStructure_PF.data_structureGetSatrted();
 	}
@@ -63,40 +66,33 @@ public class DataStructure_TestClass extends BaseClass {
 	}
 	
 	@Test(priority = 4, dataProvider = "tryEditor_dataProvider")
-	public void tryEditorRunButtonClick(int number) {
+	public void tryEditorRunButtonClick(String sheetName , int Rowno) throws IOException {
 		
-		String inputText;
-		dataStructure_PF.timeComplexity();
+		dataStructure_PF.timeComplexity(); 
 		dataStructure_PF.timeComplexityTryhere();
 		
-		switch (number) {
+		List<Object[]> registerData = ExcelReader.readExcelData(sheetName);
 		
-		case 1:
+	     if (Rowno <= registerData.size()) 
+	     {
+	    	    Object[] row = registerData.get(Rowno-1); 
+	    	    inputText = (String) row[0];
+	    	    expectedResult = (String) row[1];  
+	    	    dataStructure_PF.inputEditor(inputText);
+	    	    dataStructure_PF.runBtnClick();
+	     } 
+	    
+	     if (expectedResult.equals("Hello")) {
+	    	 
+	    	 Assert.assertEquals(expectedResult,dataStructure_PF.console());	
+	     }
+	     else {
+	    	 
+	    	 Assert.assertEquals(expectedResult,dataStructure_PF.alertMessage());	
+	     }
+	  
+		logger.info(expectedResult);
 		
-			inputText = "Hiiii";
-			dataStructure_PF.inputEditor(inputText);
-			dataStructure_PF.runBtnClick();
-			String alertMsg= dataStructure_PF.alertMessage();
-			assertEquals("NameError: name 'Hiiii' is not defined on line 1", alertMsg);
-			
-			break;
-
-		case 2:
-			
-			inputText = " ";
-			dataStructure_PF.inputEditor(inputText);
-			dataStructure_PF.runBtnClick();
-			logger.info("No Output displayed");
-			break;
-			
-		case 3:
-			
-			inputText = "print('Hello')";
-			dataStructure_PF.inputEditor(inputText);
-			dataStructure_PF.runBtnClick();
-			String output = dataStructure_PF.console();
-			assertEquals("Hello", output);
-			
-		}
+		
 	}
 }

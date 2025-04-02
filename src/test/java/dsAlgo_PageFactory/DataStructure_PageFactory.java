@@ -1,8 +1,6 @@
 package dsAlgo_PageFactory;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_Utilities.ConfigReader;
-import dsAlgo_Utilities.ExcelReader;
+
 
 public class DataStructure_PageFactory {
 	
@@ -65,17 +63,6 @@ public class DataStructure_PageFactory {
 		wait.until(ExpectedConditions.visibilityOf(login)).click();
 	}
 	
-	public void Login(String Login) throws IOException {
-		
-		List<Object[]> loginData = ExcelReader.readExcelData(Login);
-		Object[] objArray = loginData.get(1);
-		String username = (String) objArray[0];
-		String password = (String) objArray[1];
-		enterCredentials(username,password);
-		Loginbtn();
-	
-	}
-	
 	public String getStatus() {
 
 		return loginStatus.getText();
@@ -108,11 +95,38 @@ public class DataStructure_PageFactory {
 		js.executeScript("window.scrollBy(0,600)", "");
 		timeComplexityTryhere.click();
 	}  
+	public void textEditorWithNoData() {
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,600)", "");
+		
+		Actions actions = new Actions(driver);
+        actions.moveToElement(textEditor).click().sendKeys(" ").build().perform();
+		runButton.click();
+	}  
+	
+	public void textEditorWithInvalidData() {
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,600)", "");
+		
+		Actions actions = new Actions(driver);
+        actions.moveToElement(textEditor).click().sendKeys("Hiiii").build().perform();
+		runButton.click();
+	}  
+	public void textEditorWithValiddData() {
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,600)", "");
+		
+		Actions actions = new Actions(driver);
+        actions.moveToElement(textEditor).click().sendKeys("print(\"Hello\")").build().perform();
+		runButton.click();
+	} 
 	
 	public String alertMessage() {
 	
 		try {
-			
 		    String alertMessage = driver.switchTo().alert().getText();
 		    driver.switchTo().alert().accept();
 		    System.out.println(alertMessage);
