@@ -33,7 +33,7 @@ public class Login_TestClass extends BaseClass {
 		logger.info("User is in the Sign in page");
 	}
 	
-	@Test(priority = 2, dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, dependsOnMethods = { "Loginpage" }, dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)
    public void testLogin(String username, String password, String expectedResult) throws InterruptedException {
 		login_PF.SetUserName(username);
 		login_PF.SetPassword(password);
