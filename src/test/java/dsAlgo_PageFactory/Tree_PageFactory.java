@@ -1,8 +1,6 @@
 package dsAlgo_PageFactory;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -20,7 +18,7 @@ import dsAlgo_Utilities.ExcelReader;
 public class Tree_PageFactory {
 	
 	WebDriver driver;
-	List<Object[]> treeData;
+	Object[][] treeData;
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
 	public Tree_PageFactory() {
@@ -129,18 +127,11 @@ public class Tree_PageFactory {
 		run.click();
 	}
 
-//	public void pythonCodeFromExcel(String sheetname,int row) {
-//		Actions actions = new Actions(driver);
-//		try {
-//			treeData = ExcelReader.readExcelData(sheetname);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		Object[] objArray = treeData.get(row);
-//		String pythonCode = (String) objArray[0];
-//		actions.moveToElement(tryEditor).click().sendKeys(pythonCode).build().perform();
-//		run();
-//	}
+	public void pythonCodeFromExcel(String input) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(tryEditor).click().sendKeys(input).build().perform();
+		run();
+	}
 
 	public String alertMessage() {
 		try {
@@ -152,16 +143,17 @@ public class Tree_PageFactory {
 		}
 	}
 
-//	public String expectedOutputFromExcel(String sheetname,int row) {
-//		try {
-//			treeData = ExcelReader.readExcelData(sheetname);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		Object[] objArray = treeData.get(row);
-//		String output = (String) objArray[1];
-//		return output;
-//	}
+	public Object[] dataFromExcel(String sheetname,int row){
+		treeData = ExcelReader.readExcelData(sheetname);
+		Object[] objArray = treeData[row];
+		String input = (String) objArray[0];
+		String output = (String) objArray[1];
+		
+		 return new Object[] {
+		        input, output, 	        
+		    };
+		
+	}
 
 	public String output() {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", output);

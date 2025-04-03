@@ -47,9 +47,7 @@ public class BaseClass {
 		String password = configReader.getPassword();
 		tree.password(password);
 		tree.Loginbtn();
-		
-		
-		
+			
 		
 	}
 
