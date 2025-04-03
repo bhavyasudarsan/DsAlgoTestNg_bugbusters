@@ -9,7 +9,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Register_PageFactory;
-import dsAlgo_Utilities.ExcelReader;
 import dsAlgo_Utilities.*;
 
 public class Register_TestClass extends BaseClass {
@@ -32,35 +31,46 @@ public class Register_TestClass extends BaseClass {
 		logger.info("You are on the registration page");
 	}
 	
-	@Test(priority = 1, dataProvider = "RegisterData", retryAnalyzer = RetryAnalyzer.class)
-	public void dsAlgo_registration(String userName, String password1, String password2, String expectedResult) throws IOException, InterruptedException {
+	@Test(priority = 1, dataProvider = "RegisterData")
+	public void dsAlgo_registration(String username, String password1, String password2, String expectedResult) throws IOException, InterruptedException {
 		
-	    register_PF.enterCredentials(userName, password1, password1);
-	    register_PF.clickRegister();
 	    
-	    if (expectedResult.equals("Please fill in this field."))
-		 {
-			 if (userName.equals(""))
+		register_PF.enterCredentials(username, password1, password2);
+		register_PF.clickRegister();
+		 
+	    if (expectedResult.equals("Please fill in this field.")) {
+	    	
+	    	 if (username.equals(""))
 			 {
 				 Assert.assertEquals(expectedResult, register_PF.getValidationMessage());
+				 System.out.println("No Username \n");
 				 logger.info(expectedResult);
 			 }
 			 else if (password1.equals(""))
 			 {
 				 Assert.assertEquals(expectedResult, register_PF.getValidationMessagePwd());
+				 System.out.println("No P1 \n");
 				 logger.info(expectedResult);
 			 }	
-			 else 
+			 else if (password2.equals(""))
 			 {
 				 Assert.assertEquals(expectedResult, register_PF.getValidationMessagePwd2());
+				 System.out.println("No P2 \n");
 				 logger.info(expectedResult);
 			 }
-		 }
-		 else
+	    }
+	    else
 		 {
 			 Assert.assertEquals(expectedResult,register_PF.alertMessage());		
 			 logger.info(expectedResult);
 		 }
-
+	    
+	    if(expectedResult.contains("New Account created")) {
+	    	
+	    	Assert.assertEquals(register_PF.getTitle(), "NumpyNinja");
+			logger.info("You are on the NumpyNinja page");
+	    }
+	   
+		 
 	}
 }

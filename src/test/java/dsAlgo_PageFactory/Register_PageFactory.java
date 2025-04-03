@@ -70,7 +70,7 @@ public class Register_PageFactory {
 	}
 	public void clickRegister() {
 		
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(btnRegister)).click();
 	}
 	
@@ -84,8 +84,9 @@ public class Register_PageFactory {
 		
 		try {
 			
-		    String alertMessage = driver.switchTo().alert().getText();
-		    driver.switchTo().alert().accept();
+		//  String alertMessage = driver.switchTo().alert().getText();
+		    String alertMessage = registerStatus.getText();
+		//    driver.switchTo().alert().accept();
 		    System.out.println("Invalid data \n");
 		    return alertMessage;
 		    
@@ -94,6 +95,7 @@ public class Register_PageFactory {
 			 return "No alert found.";
 		}
 	}
+
 	public String getValidationMessage() {
 		
         return (String) ((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", userNameElement);
