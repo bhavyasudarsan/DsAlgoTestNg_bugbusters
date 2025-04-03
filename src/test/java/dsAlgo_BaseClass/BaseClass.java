@@ -7,7 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import dsAlgo_DriverFactory.Driver_Factory;
-import dsAlgo_Utilities.ConfigReader;
+//import dsAlgo_Utilities.ConfigReader;
 
 public class BaseClass {
 	private static final Logger logger = LoggerFactory.getLogger(BaseClass.class);
