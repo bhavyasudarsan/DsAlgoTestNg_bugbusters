@@ -45,17 +45,18 @@ public class ConfigReader {
 
 	public String getUrl() {
 		return property.get().getProperty("url");
-
 	}
 	
 	public String getHomeUrl() {
 		return property.get().getProperty("Homeurl");
-
 	}
 	
 	public String getLoginUrl() {
 		return property.get().getProperty("Loginurl");
-
+	}
+	
+	public String getRetry() {
+		return property.get().getProperty("maxRetryCount");
 	}
 
 }
