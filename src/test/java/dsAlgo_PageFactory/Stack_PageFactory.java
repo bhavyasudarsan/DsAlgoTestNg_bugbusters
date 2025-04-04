@@ -141,16 +141,16 @@ public class Stack_PageFactory {
 	public String alertMessage() {
 		try {
 		    String alertMessage = driver.switchTo().alert().getText();
-		    driver.switchTo().alert().accept();
+//		    driver.switchTo().alert().accept();
 		    return alertMessage;
 		} catch (NoAlertPresentException e) {
 			 return "No alert found.";
 		}
 	}
-	public void inputEditor(String code) {
+	public void inputEditor(String inputText) {
 
 		Actions actions = new Actions(driver);
-		actions.moveToElement(tryEditorInput).click().sendKeys(code).build().perform();
+		actions.moveToElement(tryEditorInput).click().sendKeys(inputText).build().perform();
 	}
 
 	public String console() {
