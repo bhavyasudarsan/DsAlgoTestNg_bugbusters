@@ -2,13 +2,10 @@ package dsAlgo_TestClasses;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import dsAlgo_BaseClass.BaseClass;
@@ -19,12 +16,7 @@ public class Queue_TestClass extends BaseClass {
 	Queue_PageFactory queue_PF;
 
 	private static final Logger logger = LoggerFactory.getLogger(Queue_PageFactory.class);
-	
-	@DataProvider(name = "stringData")
-	public Object[][] stringData() {
-		return new Object[][] { { "Implementation of Queue in Python" }, { "Implementation using collections.deque" }, {"Implementation using array"}, {"Queue Operations"}, {"Practice Questions"} };
-	}
-	
+		
 	@BeforeMethod
 	public void test() {
 		logger.info("User is in the signin page");
@@ -42,7 +34,7 @@ public class Queue_TestClass extends BaseClass {
 		logger.info("User is in the Queue page");
 	}
 
-	@Test(priority = 2, dependsOnMethods = { "getTitle" }, dataProvider = "stringData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, dependsOnMethods = { "getTitle" }, dataProviderClass = DataProviders.class, dataProvider = "QueueData", retryAnalyzer = RetryAnalyzer.class)
 	public void user_clicks_link(String string) {
 		queue_PF.ClickQueue();
 		if (string.equals("Practice Questions"))
@@ -55,7 +47,7 @@ public class Queue_TestClass extends BaseClass {
 	}
 		
 		
-	@Test(priority = 3, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Queue in Python page")
+	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Queue in Python page")
 	public void TestEditor_Pypage(String inputText, String expectedOutput) {	
 		queue_PF.ClickQueue();
 		queue_PF.ClickText("Implementation of Queue in Python");
@@ -76,7 +68,7 @@ public class Queue_TestClass extends BaseClass {
 		}				
 	}	
 	
-	@Test(priority = 4, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in deque page")
+	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in deque page")
 	public void TestEditor_dequepage(String inputText, String expectedOutput) {	
 		queue_PF.ClickQueue();
 		queue_PF.ClickText("Implementation using collections.deque");
@@ -97,7 +89,7 @@ public class Queue_TestClass extends BaseClass {
 		}				
 	}
 	
-	@Test(priority = 5, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in array page")
+	@Test(priority = 5, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in array page")
 	public void TestEditor_arraypage(String inputText, String expectedOutput) {	
 		queue_PF.ClickQueue();
 		queue_PF.ClickText("Implementation using array");
@@ -118,7 +110,7 @@ public class Queue_TestClass extends BaseClass {
 		}				
 	}
 	
-	@Test(priority = 6, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Operations page")
+	@Test(priority = 6, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Operations page")
 	public void TestEditor_Operpage(String inputText, String expectedOutput) {	
 		queue_PF.ClickQueue();
 		queue_PF.ClickText("Queue Operations");
@@ -137,11 +129,5 @@ public class Queue_TestClass extends BaseClass {
 			Assert.assertEquals(expectedOutput, queue_PF.getOPMsg());
 			logger.info(expectedOutput);
 		}				
-	}
-	
-	@DataProvider(name = "EditorData")
-    public Object[][] loginDataProvider() throws IOException {
-        return ExcelReader.readExcelData("Editor");
-    }
-
+	}	
 }

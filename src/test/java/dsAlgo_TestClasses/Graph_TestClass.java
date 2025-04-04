@@ -2,13 +2,10 @@ package dsAlgo_TestClasses;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import dsAlgo_BaseClass.BaseClass;
@@ -19,12 +16,7 @@ public class Graph_TestClass extends BaseClass {
 	Graph_PageFactory graph_PF;
 
 	private static final Logger logger = LoggerFactory.getLogger(Graph_PageFactory.class);
-	
-	@DataProvider(name = "stringData")
-	public Object[][] stringData() {
-		return new Object[][] { { "Graph" }, { "Graph Representations" }, {"Practice Questions"} };
-	}
-	
+		
 	@BeforeMethod
 	public void test() {
 		logger.info("User is in the signin page");
@@ -42,7 +34,7 @@ public class Graph_TestClass extends BaseClass {
 		logger.info("User is in the Graph page");
 	}
 
-	@Test(priority = 2, dependsOnMethods = { "getTitle" }, dataProvider = "stringData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, dependsOnMethods = { "getTitle" }, dataProviderClass = DataProviders.class, dataProvider = "GraphData", retryAnalyzer = RetryAnalyzer.class)
 	public void user_clicks_link(String string) {
 		graph_PF.ClickGraph();
 		if (string.equals("Practice Questions"))
@@ -62,7 +54,7 @@ public class Graph_TestClass extends BaseClass {
 	}
 		
 		
-	@Test(priority = 3, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Graph page")
+	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Graph page")
 	public void TestEditor_page(String inputText, String expectedOutput) {
 		graph_PF.ClickGraph();	
 		graph_PF.ClickGraph2("Graph");		
@@ -83,7 +75,7 @@ public class Graph_TestClass extends BaseClass {
 		}				
 	}
 	
-	@Test(priority = 4, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Graph Representations page")
+	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is in the tryEditor page in Graph Representations page")
 	public void TestEditor_GRpage(String inputText, String expectedOutput) {
 		graph_PF.ClickGraph();	
 		graph_PF.ClickText("Graph Representations");		
@@ -103,12 +95,5 @@ public class Graph_TestClass extends BaseClass {
 			logger.info(expectedOutput);
 		}	
 	}
-	
-	@DataProvider(name = "EditorData")
-    public Object[][] loginDataProvider() throws IOException {
-        return ExcelReader.readExcelData("Editor");
-    }
-
 }
-
 

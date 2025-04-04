@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import dsAlgo_Utilities.*;
@@ -33,7 +32,7 @@ public class Login_TestClass extends BaseClass {
 		logger.info("User is in the Sign in page");
 	}
 	
-	@Test(priority = 2, dependsOnMethods = { "Loginpage" }, dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 2, dependsOnMethods = { "Loginpage" }, dataProviderClass = DataProviders.class, dataProvider = "loginData", retryAnalyzer = RetryAnalyzer.class)
    public void testLogin(String username, String password, String expectedResult) throws InterruptedException {
 		login_PF.SetUserName(username);
 		login_PF.SetPassword(password);
@@ -65,11 +64,5 @@ public class Login_TestClass extends BaseClass {
 		login_PF.ClickSignOut();
 		Assert.assertEquals("Logged out successfully", login_PF.getErrMsg());
 		logger.info("User Logged out successfully");
-	}
-
-	@DataProvider(name = "loginData")
-    public Object[][] loginDataProvider() throws IOException {
-        return ExcelReader.readExcelData("Login");
-    }
-    
+	}    
 }
