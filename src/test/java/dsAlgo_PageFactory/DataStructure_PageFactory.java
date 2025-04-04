@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_Utilities.ConfigReader;
 
-
 public class DataStructure_PageFactory {
 	
 	WebDriver driver ;
@@ -63,11 +62,6 @@ public class DataStructure_PageFactory {
 		wait.until(ExpectedConditions.visibilityOf(login)).click();
 	}
 	
-	public String getStatus() {
-
-		return loginStatus.getText();
-	}
-	
 	public void data_structureGetSatrted() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -95,41 +89,12 @@ public class DataStructure_PageFactory {
 		js.executeScript("window.scrollBy(0,600)", "");
 		timeComplexityTryhere.click();
 	}  
-	public void textEditorWithNoData() {
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,600)", "");
-		
-		Actions actions = new Actions(driver);
-        actions.moveToElement(textEditor).click().sendKeys(" ").build().perform();
-		runButton.click();
-	}  
-	
-	public void textEditorWithInvalidData() {
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,600)", "");
-		
-		Actions actions = new Actions(driver);
-        actions.moveToElement(textEditor).click().sendKeys("Hiiii").build().perform();
-		runButton.click();
-	}  
-	public void textEditorWithValiddData() {
-		
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("window.scrollBy(0,600)", "");
-		
-		Actions actions = new Actions(driver);
-        actions.moveToElement(textEditor).click().sendKeys("print(\"Hello\")").build().perform();
-		runButton.click();
-	} 
 	
 	public String alertMessage() {
 	
 		try {
 		    String alertMessage = driver.switchTo().alert().getText();
 		    driver.switchTo().alert().accept();
-		    System.out.println(alertMessage);
 		    return alertMessage;
 		    
 		} catch (NoAlertPresentException e) {
@@ -137,15 +102,6 @@ public class DataStructure_PageFactory {
 			 return "No alert found.";
 		}
 	}
-	
-	public void Alertaccept() {
-		 try {
-			 driver.switchTo().alert().accept();
-		 }
-		 catch (NoAlertPresentException e) {
-			 //No alert found.
-		 }
-	 }
 	
 	public void inputEditor(String code) {
 
@@ -162,7 +118,6 @@ public class DataStructure_PageFactory {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		String output = console.getText();
-		System.out.println(output);
 		return output;
 	}
 	

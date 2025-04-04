@@ -9,24 +9,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import dsAlgo_PageFactory.DataStructure_PageFactory;
 import dsAlgo_TestClasses.DataStructure_TestClass;
 import dsAlgo_Utilities.*;
-import dsAlgo_Utilities.RetryAnalyzer;
 
 public class DataStructure_TestClass extends BaseClass {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DataStructure_TestClass.class);
 	DataStructure_PageFactory dataStructure_PF;
-	String expectedResult;
-	String inputText;
-	
-	@DataProvider(name = "TryEditorData")
-    public Object[][] registerDataProvider() throws IOException {
-		
-        return ExcelReader.readExcelData("Editor");
-    }
 	
 	@BeforeMethod
 	public void test() throws IOException {
@@ -65,7 +55,7 @@ public class DataStructure_TestClass extends BaseClass {
 		logger.info("User is in the Practice Questions page");
 	}
 	
-	@Test(priority = 4, dataProvider = "TryEditorData", retryAnalyzer = RetryAnalyzer.class)
+	@Test(priority = 4, dataProvider = "EditorData", dataProviderClass = DataProviders.class, retryAnalyzer = RetryAnalyzer.class)
 	public void tryEditorRunButtonClick(String inputText,String expectedResult) throws IOException {
 		
 		dataStructure_PF.timeComplexity(); 
@@ -78,7 +68,6 @@ public class DataStructure_TestClass extends BaseClass {
 			String alertMsg = dataStructure_PF.alertMessage();
 			Assert.assertTrue(alertMsg.contains("NameError:"));	
 			logger.info(alertMsg);
-			dataStructure_PF.Alertaccept();
 		}
 		else
 		{
@@ -87,7 +76,5 @@ public class DataStructure_TestClass extends BaseClass {
 		}	
 		
 		logger.info(expectedResult);
-		
-		
 	}
 }

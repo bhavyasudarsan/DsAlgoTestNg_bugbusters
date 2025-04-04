@@ -83,11 +83,7 @@ public class Register_PageFactory {
 	public String alertMessage() {
 		
 		try {
-			
-		//  String alertMessage = driver.switchTo().alert().getText();
 		    String alertMessage = registerStatus.getText();
-		//    driver.switchTo().alert().accept();
-		    System.out.println("Invalid data \n");
 		    return alertMessage;
 		    
 		} catch (NoAlertPresentException e) {
