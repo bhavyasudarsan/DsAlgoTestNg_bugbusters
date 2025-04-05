@@ -17,8 +17,6 @@ public class DataStructure_PageFactory {
 	
 	WebDriver driver ;
 	WebDriverWait wait;
-	String expectedResult;
-	String inputText;
 	ConfigReader configReader = new ConfigReader();
 	
 	public DataStructure_PageFactory() {

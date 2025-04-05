@@ -54,7 +54,6 @@ public class Register_TestClass extends BaseClass {
 			 Assert.assertEquals(expectedResult,register_PF.alertMessage());		
 			 logger.info(expectedResult);
 		 }
-	    
 	    if(expectedResult.contains("New Account created")) {
 	    	
 	    	Assert.assertEquals(register_PF.getTitle(), "NumpyNinja");

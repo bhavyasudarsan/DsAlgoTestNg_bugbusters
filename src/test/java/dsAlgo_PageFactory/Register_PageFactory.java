@@ -17,7 +17,6 @@ public class Register_PageFactory {
 	
 	WebDriver driver ;
 	WebDriverWait wait;
-	String expectedResult;
 	String userName;
 	String password;
 	String ConfirmPassword;

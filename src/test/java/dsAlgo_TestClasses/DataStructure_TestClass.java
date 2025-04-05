@@ -74,7 +74,6 @@ public class DataStructure_TestClass extends BaseClass {
 			Assert.assertEquals(expectedResult, dataStructure_PF.console());
 			logger.info(expectedResult);
 		}	
-		
 		logger.info(expectedResult);
 	}
 }
