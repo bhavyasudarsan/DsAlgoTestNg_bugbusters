@@ -30,5 +30,4 @@ public class DataProviders {
 		
         return ExcelReader.readExcelData("Register");
     }
-    // Add more DataProviders as needed
 }

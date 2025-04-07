@@ -41,7 +41,6 @@ public class DataStructure_PageFactory {
 	@FindBy(xpath = "//pre[@id='output']")WebElement console;
 	@FindBy(xpath = "//button[text()='Run']")WebElement runButton;
 
-	
 	public void ClickGetStBtn() {
 		getStartBtn.click();
 	}

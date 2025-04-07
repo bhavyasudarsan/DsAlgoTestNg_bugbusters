@@ -27,6 +27,7 @@ public class DataStructure_TestClass extends BaseClass {
 		dataStructure_PF.enterCredentials(Driver_Factory.configReader.getUsername(), Driver_Factory.configReader.getPassword());
 		dataStructure_PF.Loginbtn();
 		dataStructure_PF.data_structureGetSatrted();
+		logger.info("Data Structure page");
 	}
 	
 	@Test(priority = 1, description = "Verify that user should land on the Time Complexity Page")
