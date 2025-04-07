@@ -3,6 +3,8 @@
 <suite name="Suite">
   <listeners>
 <listener class-name="dsAlgo_Utilities.Listeners"></listener>
+		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
+
 </listeners>
   <test thread-count="5" name="Test">
 
