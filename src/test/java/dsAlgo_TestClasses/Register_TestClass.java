@@ -21,7 +21,7 @@ public class Register_TestClass extends BaseClass {
 		register_PF = new Register_PageFactory();
 		register_PF.getStart();
 		register_PF.registerlink();
-		logger.info("Registration page");
+		logger.info("You are on the registration page");
 	}
 	
 	@Test(priority = 1, dataProvider = "RegisterData", dataProviderClass = DataProviders.class, retryAnalyzer = RetryAnalyzer.class)
@@ -54,6 +54,7 @@ public class Register_TestClass extends BaseClass {
 			 Assert.assertEquals(expectedResult,register_PF.alertMessage());		
 			 logger.info(expectedResult);
 		 }
+	    
 	    if(expectedResult.contains("New Account created")) {
 	    	
 	    	Assert.assertEquals(register_PF.getTitle(), "NumpyNinja");
