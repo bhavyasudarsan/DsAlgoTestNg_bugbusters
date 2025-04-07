@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="DSAlgoTestSuite" parallel="tests" thread-count="2">
-    <test name="LoginTests">
-        <parameter name="browser" value="Chrome"/>
-        <classes>
-            <class name="dsAlgo_TestClasses.Login_TestClass"/>
-        </classes>
-    </test>
-    <test name="RegistrationTests">
-        <parameter name="browser" value="Firefox"/>
-        <classes>
-            <class name="dsAlgo_TestClasses.Register_TestClass"/>
-        </classes>
-    </test>
-    <test name="PythonCodeTests">
-        <parameter name="browser" value="Edge"/>
-        <classes>
-            <class name="dsAlgo_TestClasses.Array_TestClass"/>
-        </classes>
-    </test>
-</suite>
+<suite name="Suite">
+  <listeners>
+<listener class-name="dsAlgo_Utilities.Listeners"></listener>
+</listeners>
+  <test thread-count="5" name="Test">
+
+    <classes>
+      <class name="dsAlgo_TestClasses.LinkedList_TestClass"/>
+      <class name="dsAlgo_TestClasses.Array_TestClass"/>
+      <class name="dsAlgo_TestClasses.DataStructure_TestClass"/>
+      <class name="dsAlgo_TestClasses.Graph_TestClass"/>
+      <class name="dsAlgo_TestClasses.Home_TestClass"/>
+      <class name="dsAlgo_TestClasses.Login_TestClass"/>
+      <class name="dsAlgo_TestClasses.Queue_TestClass"/>
+      <class name="dsAlgo_TestClasses.Register_TestClass"/>
+       <class name="dsAlgo_TestClasses.Stack_TestClass"/>
+       <class name="dsAlgo_TestClasses.Tree_TestClass"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
