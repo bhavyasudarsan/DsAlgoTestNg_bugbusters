@@ -13,8 +13,10 @@ import dsAlgo_Utilities.ConfigReader;
 
 public class Driver_Factory {
 
-	private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-	public static ConfigReader configReader = new ConfigReader();
+
+	private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
+	static ConfigReader configReader;
+
 	private static final Logger logger = LoggerFactory.getLogger(Driver_Factory.class);
 	public final static int TIMEOUT = 2;
 	static String browserType = null;
@@ -26,6 +28,7 @@ public class Driver_Factory {
 	public static String getBrowserType() {
 		if (browserType == null) {
 			try {
+				configReader = new ConfigReader();
 				browserType = configReader.getBrowser();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -44,10 +47,13 @@ public class Driver_Factory {
 		} else {
 			threadDriver.set(new ChromeDriver());
 		}
-		threadDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
-		threadDriver.get().manage().window().maximize();
+		
+		WebDriver driver = threadDriver.get();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
+		driver.manage().window().maximize();
 		logger.info("Driver initialised with browser as:  "  +browser) ;
-		return threadDriver.get();
+		return driver;
+
 	}
 
 	public static WebDriver getDriverInstance() {
