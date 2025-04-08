@@ -1,6 +1,8 @@
 package dsAlgo_BaseClass;
 
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -19,7 +21,7 @@ public class BaseClass {
 	ConfigReader configReader;
 	WebDriver driver;
 	String url;
-	
+  private static final Logger logger = LoggerFactory.getLogger(BaseClass.class);
 
 	public BaseClass() {
 		this.driverFactory = new Driver_Factory();
@@ -33,11 +35,13 @@ public class BaseClass {
 		driver= driverFactory.driverSetup(browser);	
 		url = this.configReader.getUrl();
 		driver.get(url);
+    logger.info("Launched the application");
 		}catch(Exception e) {
 			System.out.println("exception: "+ e);
 		}
 	}
 	
+
 	@AfterMethod
 	public void tearDown() {
 		if (driver != null) {
@@ -64,5 +68,6 @@ public class BaseClass {
 	   Driver_Factory.setBrowserType(browserType);	 
 	    }
 	}
+
 
 }

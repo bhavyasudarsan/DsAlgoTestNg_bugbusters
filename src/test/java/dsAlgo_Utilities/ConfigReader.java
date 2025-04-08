@@ -50,3 +50,4 @@ public class ConfigReader {
 		return properties.getProperty("maxRetryCount");
 	}
 }
+
