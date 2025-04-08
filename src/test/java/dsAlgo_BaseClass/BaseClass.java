@@ -10,10 +10,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import dsAlgo_DriverFactory.Driver_Factory;
-import dsAlgo_PageFactory.Tree_PageFactory;
+import dsAlgo_PageFactory.Login_PageFactory;
 import dsAlgo_Utilities.ConfigReader;
-
-
 
 public class BaseClass {
 	
@@ -50,13 +48,14 @@ public class BaseClass {
 	}
 	
 	public void validLogin() {
-		Tree_PageFactory tree =	new Tree_PageFactory();
-		tree.clickSignin();
+		Login_PageFactory login =	new Login_PageFactory();
+		login.openHome();
+		login.ClickSignIn();
 		String username=configReader.getUsername();
-		tree.username(username);
+		login.SetUserName(username);
 		String password = configReader.getPassword();
-		tree.password(password);
-		tree.Loginbtn();		
+		login.SetPassword(password);
+		login.ClickBtnLogin();		
 		
 	}
 	
