@@ -85,7 +85,8 @@ public class Register_PageFactory {
 		    String alertMessage = registerStatus.getText();
 		    return alertMessage;
 		    
-		} catch (NoAlertPresentException e) {
+		}
+		catch (NoAlertPresentException e) {
 			
 			 return "No alert found.";
 		}

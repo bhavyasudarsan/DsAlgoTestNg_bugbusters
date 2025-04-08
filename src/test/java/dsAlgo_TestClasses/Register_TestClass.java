@@ -10,6 +10,7 @@ import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Register_PageFactory;
 import dsAlgo_Utilities.*;
 
+
 public class Register_TestClass extends BaseClass {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DataStructure_TestClass.class);
