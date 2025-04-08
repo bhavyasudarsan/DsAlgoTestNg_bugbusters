@@ -25,6 +25,7 @@ public class Register_PageFactory {
 		driver=Driver_Factory.getDriverInstance();
 		PageFactory.initElements(driver, this);
 	}
+	
 	@FindBy(linkText = "Get Started")WebElement getStart;
 	@FindBy(xpath = "//a[@href='/register']")WebElement registerlink;
 	@FindBy(id = "id_username")WebElement userNameElement;

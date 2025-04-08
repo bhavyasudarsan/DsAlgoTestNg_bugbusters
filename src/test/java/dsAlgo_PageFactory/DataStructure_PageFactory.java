@@ -119,7 +119,6 @@ public class DataStructure_PageFactory {
 	}
 	
 	public String getTitle() {
-		
 		return driver.getTitle();	
 	}
 
