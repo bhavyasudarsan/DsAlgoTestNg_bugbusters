@@ -3,6 +3,9 @@ package dsAlgo_BaseClass;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_PageFactory.Tree_PageFactory;
@@ -23,13 +26,16 @@ public class BaseClass {
 		this.configReader = new ConfigReader();
 	}
 	
-	@BeforeMethod
+	@BeforeMethod  
 	public void setup() {
+		try {
 		String browser = Driver_Factory.getBrowserType();
 		driver= driverFactory.driverSetup(browser);	
-		url = configReader.getUrl();
+		url = this.configReader.getUrl();
 		driver.get(url);
-		System.out.println("Launched the application");
+		}catch(Exception e) {
+			System.out.println("exception: "+ e);
+		}
 	}
 	
 	@AfterMethod
@@ -46,9 +52,17 @@ public class BaseClass {
 		tree.username(username);
 		String password = configReader.getPassword();
 		tree.password(password);
-		tree.Loginbtn();
-			
+		tree.Loginbtn();		
 		
+	}
+	
+	@BeforeTest
+	@Parameters("browserType")
+	public void browserChange(@Optional() String browserType) {
+	
+	   if (browserType != null && !browserType.equals("param-val-not-found")) {		   
+	   Driver_Factory.setBrowserType(browserType);	 
+	    }
 	}
 
 }

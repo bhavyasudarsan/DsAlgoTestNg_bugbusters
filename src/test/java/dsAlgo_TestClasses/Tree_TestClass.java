@@ -22,11 +22,11 @@ public class Tree_TestClass extends BaseClass {
 		tree.treeGetStarted();	
 	}
 	
-	@DataProvider(name = "stringData")
-		public Object[][] stringData() {
-		return new Object[][] {
+//	@DataProvider(name = "stringData")
+//		public Object[][] stringData() {
+//		return new Object[][] {
 //            {"Overview of Trees"},
-//			  {"Terminologies"}
+//			  {"Terminologies"},
 //            {"Types of Trees"},
 //            {"Tree Traversals"},
 //            {"Traversals-Illustration"},
@@ -38,8 +38,8 @@ public class Tree_TestClass extends BaseClass {
 //            {"Applications of Binary trees"},
 //            {"Binary Search Trees"},
 //			  {"Implementation Of BST"}
-       };
-	}
+//       };
+//	}
 	
 //	@Test(priority=2,dataProvider = "stringData")
 	public void pageLink(String string) {
@@ -131,6 +131,157 @@ public class Tree_TestClass extends BaseClass {
 		Assert.assertEquals(tree.alertMessage(), output);
 	}
 	
+	@Test(priority= 6,dataProvider = "EditorExcelValidData")
+	public void typesOfTreesValidTryEditor(String input,String output) {
+		pageLink("Types of Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 7,dataProvider = "EditorExcelInvalidData")
+	public void typesOfTreesinvalidTryEditor(String input,String output) {
+		pageLink("Types of Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 8,dataProvider = "EditorExcelValidData")
+	public void treeTraversalsValidTryEditor(String input,String output) {
+		pageLink("Tree Traversals");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 9,dataProvider = "EditorExcelInvalidData")
+	public void treeTraversalsinvalidTryEditor(String input,String output) {
+		pageLink("Tree Traversals");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 10,dataProvider = "EditorExcelValidData")
+	public void traversalsValidTryEditor(String input,String output) {
+		pageLink("Traversals-Illustration");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 11,dataProvider = "EditorExcelInvalidData")
+	public void traversalsinvalidTryEditor(String input,String output) {
+		pageLink("Traversals-Illustration");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 12,dataProvider = "EditorExcelValidData")
+	public void binaryTreesValidTryEditor(String input,String output) {
+		pageLink("Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 13,dataProvider = "EditorExcelInvalidData")
+	public void binaryTreesinvalidTryEditor(String input,String output) {
+		pageLink("Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 12,dataProvider = "EditorExcelValidData")
+	public void typesBinaryTreesValidTryEditor(String input,String output) {
+		pageLink("Types of Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 13,dataProvider = "EditorExcelInvalidData")
+	public void typesBinaryTreesinvalidTryEditor(String input,String output) {
+		pageLink("Types of Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	@Test(priority= 14,dataProvider = "EditorExcelValidData")
+	public void implementationPythonValidTryEditor(String input,String output) {
+		pageLink("Implementation in Python");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 15,dataProvider = "EditorExcelInvalidData")
+	public void implementationPythoninvalidTryEditor(String input,String output) {
+		pageLink("Implementation in Python");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	@Test(priority= 16,dataProvider = "EditorExcelValidData")
+	public void binaryTreeTraversalsValidTryEditor(String input,String output) {
+		pageLink("Binary Tree Traversals");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 17,dataProvider = "EditorExcelInvalidData")
+	public void binaryTreeTraversalsinvalidTryEditor(String input,String output) {
+		pageLink("Binary Tree Traversals");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	@Test(priority= 18,dataProvider = "EditorExcelValidData")
+	public void implementationBinaryTreesValidTryEditor(String input,String output) {
+		pageLink("Implementation of Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 19,dataProvider = "EditorExcelInvalidData")
+	public void implementationBinaryTreesinvalidTryEditor(String input,String output) {
+		pageLink("Implementation of Binary Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 20,dataProvider = "EditorExcelValidData")
+	public void applicationsBinaryTreesValidTryEditor(String input,String output) {
+		pageLink("Applications of Binary trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 21,dataProvider = "EditorExcelInvalidData")
+	public void applicationsBinaryTreesinvalidTryEditor(String input,String output) {
+		pageLink("Applications of Binary trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 22,dataProvider = "EditorExcelValidData")
+	public void binarySearchTreesValidTryEditor(String input,String output) {
+		pageLink("Binary Search Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 23,dataProvider = "EditorExcelInvalidData")
+	public void binarySearchTreesinvalidTryEditor(String input,String output) {
+		pageLink("Binary Search Trees");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
+	@Test(priority= 24,dataProvider = "EditorExcelValidData")
+	public void implementationOfBSTValidTryEditor(String input,String output) {
+		pageLink("Implementation Of BST");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.output(), output);
+	}
+	
+	@Test(priority= 25,dataProvider = "EditorExcelInvalidData")
+	public void implementationOfBSTinvalidTryEditor(String input,String output) {
+		pageLink("Implementation Of BST");
+		tree.pythonCodeFromExcel(input);
+		Assert.assertEquals(tree.alertMessage(), output);
+	}
+	
 	@DataProvider(name = "EditorExcelValidData")
 	public Object[][] validCodeFromExcel() {
 		return new Object[][] {tree.dataFromExcel("Editor", 1)};
@@ -141,6 +292,8 @@ public class Tree_TestClass extends BaseClass {
 	public Object[][] invalidCodeFromExcel() {
 		return new Object[][]{ tree.dataFromExcel("Editor", 2),tree.dataFromExcel("Editor", 3)};
 	}	
+	
+	
 	
 	
 }

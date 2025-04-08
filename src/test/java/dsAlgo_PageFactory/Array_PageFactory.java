@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dsAlgo_DriverFactory.Driver_Factory;
+import dsAlgo_Utilities.CommonUtils;
 import dsAlgo_Utilities.ExcelReader;
 
 public class Array_PageFactory {
@@ -98,7 +99,7 @@ public class Array_PageFactory {
 		run();
 	}
 
-	public void validPythonCode(String input) {
+	public void tryEditorCode(String input) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditor).click().sendKeys(input).build().perform();
 		run();
@@ -109,19 +110,19 @@ public class Array_PageFactory {
 		wait.until(ExpectedConditions.visibilityOf(output));
 		return (output.getText());
 	}
-	public String expectedOutputFromExcel(String sheetName,int row) {
-		arrayData = ExcelReader.readExcelData(sheetName);
-		String output = (String)arrayData[row][2];
-		return output;
-	}
+//	public String expectedOutputFromExcel(String sheetName,int row) {
+//		arrayData = ExcelReader.readExcelData(sheetName);
+//		String output = (String)arrayData[row][2];
+//		return output;
+//	}
 	
-	public Object[][] dataFromExcel(String sheetName,int row){
+	public Object[] dataFromExcel(String sheetName,int row){
 		arrayData = ExcelReader.readExcelData(sheetName);
-		String input = (String) arrayData[row][1];
-		String output = (String) arrayData[row][2];
-		
-		 return new Object[][] {
-		        {input, output}, 	        
+		Object[] objArray = arrayData[row];
+		String input = (String) objArray[1];
+		String output = (String) objArray[2];
+		 return new Object[] {
+		        input, output 	        
 		    };
 		
 	}
@@ -162,17 +163,15 @@ public class Array_PageFactory {
 		wait.until(ExpectedConditions.visibilityOf(applicationsofArray)).click();
 	}
 
-//	public void validCodePracticeQuestions(String sheetName,int row) {
-//		try {
-//			arrayData = ExcelReader.readExcelData(sheetName);
-//			Object[] objArray = arrayData.get(row);
-//			String codeFromExcel = (String) objArray[1];
-//			CommonUtils.enterCodePractice(driver, codeFromExcel, tryEditor);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//	}
+	public void validCodePracticeQuestions(String input) {
+		try {
+			
+			CommonUtils.enterCodePractice(driver, input, tryEditor);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	public void invalidCodeSubmit(String sheetName,int row) {
 		arrayData = ExcelReader.readExcelData(sheetName);
@@ -181,6 +180,7 @@ public class Array_PageFactory {
 		actions.moveToElement(tryEditor).click().sendKeys(codeFromExcel).build().perform();
 		submit.click();
 	}
+	
 
 	public void submit() {
 		submit.click();

@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_Utilities.ExcelReader;
 
-public class Tree_PageFactory {
+public class Tree_PageFactory  {
 	
 	WebDriver driver;
 	Object[][] treeData;
