@@ -1,7 +1,6 @@
 package dsAlgo_PageFactory;
 
 import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -12,14 +11,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_Utilities.ConfigReader;
 
 public class Queue_PageFactory {
 	WebDriver driver;
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	ConfigReader configReader = new ConfigReader();
+	static ConfigReader configReader = new ConfigReader();
 
 	public Queue_PageFactory()
 	 {
@@ -67,7 +65,7 @@ public class Queue_PageFactory {
 	 WebElement dynamicLink;
 	 	   
 	 public String getTitle() {
-			return driver.getTitle();
+	  return driver.getTitle();
 	 }
 	 
 	 public void SetUserName(String uName) {
@@ -82,7 +80,7 @@ public class Queue_PageFactory {
 	 }  
 	 
 	 public void openLogin() {
-		 driver.get(configReader.getLoginUrl());
+     driver.get(configReader.getLoginUrl());
 	 }
 	 
 	 public void ClickBtnLogin() {
