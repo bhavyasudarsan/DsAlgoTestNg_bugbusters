@@ -19,7 +19,7 @@ import dsAlgo_Utilities.ConfigReader;
 public class Graph_PageFactory {
 	WebDriver driver;
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	ConfigReader configReader = new ConfigReader();
+	static ConfigReader configReader = new ConfigReader();
 	
 	public Graph_PageFactory()
 	 {
