@@ -3,23 +3,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Home_PageFactory;
 import dsAlgo_Utilities.ConfigReader;
+import dsAlgo_Utilities.DataProviders;
 
 public class Home_TestClass  extends BaseClass{
 	private static final Logger logger = LoggerFactory.getLogger(Home_PageFactory.class);
 	ConfigReader configReader = new ConfigReader();
-	
 	Home_PageFactory homePage;
-	@DataProvider(name = "stringData")
-	public Object[][] stringData() {
-		return new Object[][] { { "Arrays" }, { "Linked List" }, {"Stack"},{"Queue"},{"Graph"},{"Tree"} };
-	}
-
 	@BeforeMethod
 	public void userInDsAlgoPortal() {
 		homePage=  new Home_PageFactory();
@@ -45,7 +38,7 @@ public class Home_TestClass  extends BaseClass{
 		logger.info("User able to see options at dropdown");
 	
 	}
-	@Test(priority = 2, dataProvider= "stringData",description = "Verify that user able to see warning message while selecting Strings from the drop down without Sign in")
+	@Test(priority = 3,dataProviderClass = DataProviders.class, dataProvider= "homeData",description = "Verify that user able to see warning message while selecting Strings from the drop down without Sign in")
 	public void verifyWarningFromDropdown( String daraStructures) {
 		homePage.clickStBtn();
 		homePage.dropDownClick();
@@ -76,7 +69,7 @@ Assert.assertEquals("You are not logged in",homePage.messageDisplayed());
 logger.info("Warning Message appears: " + "You are not logged in");
 	
 	}
-	@Test(priority = 4, dataProvider= "stringData",description = "Verify user able to see warning message while clicking 'Get Started' buttons of 'Data Structures-panel' without Sign in")
+	@Test(priority = 4,dataProviderClass = DataProviders.class, dataProvider= "homepanelData",description = "Verify user able to see warning message while clicking 'Get Started' buttons of 'Data Structures-panel' without Sign in")
 
 	public void WarningByClikingGetStartedBtn( String daraStructureType) {
 		homePage.clickStBtn();
@@ -97,9 +90,12 @@ logger.info("Warning Message appears: " + "You are not logged in");
 			homePage.clickTreeBtn();
 			break;
 		case "Linked List":
-			homePage.clickGraphBtn();
+			homePage. clicklinkedListBtn();
 			break;
-		default:
+			
+		case "Graph":
+			homePage.clickGraphBtn();
+       
 			break;
 		}
 

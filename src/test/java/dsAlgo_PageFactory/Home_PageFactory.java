@@ -70,6 +70,8 @@ public class Home_PageFactory {
 	@FindBy(xpath = "//h5[text()='Tree']/../a")
 	WebElement treeBtn;
 	@FindBy(xpath = "//h5[text()='Linked List']/../a")
+	WebElement linkedListBtn;
+	@FindBy(xpath = "//h5[text()='Graph']/../a")
 	WebElement graphBtn;
 
 	public void clickStBtn() {
@@ -180,7 +182,10 @@ public class Home_PageFactory {
 	public void clickTreeBtn() {
 		treeBtn.click();
 	}
-
+	
+	public void clicklinkedListBtn() {
+		linkedListBtn.click();
+	}
 	public void clickGraphBtn() {
 		graphBtn.click();
 	}
