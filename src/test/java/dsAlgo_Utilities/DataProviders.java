@@ -4,11 +4,20 @@ import java.io.IOException;
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
-
+	
+	  @DataProvider(name = "homeData")
+		public Object[][] homeData() {
+			return new Object[][] { { "Arrays" }, { "Linked List" }, {"Stack"},{"Queue"},{"Graph"},{"Tree"} };
+		}
+	  @DataProvider(name = "homepanelData")
+		public Object[][] homepanelData() {
+			return new Object[][] { { "Array" }, { "Linked List" }, {"Stack"},{"Queue"},{"Graph"},{"Tree"} };
+		}
     @DataProvider(name = "loginData")
     public static Object[][] loginDataProvider() throws IOException {
         return ExcelReader.readExcelData("Login");
     }
+  
 
     @DataProvider(name = "EditorData")
     public static Object[][] editorDataProvider() throws IOException {
@@ -24,5 +33,15 @@ public class DataProviders {
 	public Object[][] stringData() {
 		return new Object[][] { { "Implementation of Queue in Python" }, { "Implementation using collections.deque" }, {"Implementation using array"}, {"Queue Operations"}, {"Practice Questions"} };
 	}
-    // Add more DataProviders as needed
+	
+	@DataProvider(name = "linkedListData")
+	public Object[][] linkedListData() {
+		return new Object[][] { { "Introduction" },{ "Creating Linked List" },{ "Types of Linked List" },{ "Implement Linked List in Python" }, { "Traversal" }, { "Insertion" }, { "Deletion" } };
+	}
+	@DataProvider(name = "stackData")
+	public Object[][] stackData() {
+		return new Object[][] { { "Operations in Stack" } ,
+			{ "Applications" },{"Implementation"}};
+	}
+	
 }
