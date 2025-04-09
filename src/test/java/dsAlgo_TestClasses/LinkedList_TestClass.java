@@ -31,38 +31,62 @@ public class LinkedList_TestClass extends BaseClass {
 		logger.info("User is in the Linked List page");
 	}
 
-	@Test(priority = 1, dataProviderClass = DataProviders.class, dataProvider = "linkedListData", description = "Verify that user is able to navigate to try editor page through each link")
+	@Test(priority = 2, dataProviderClass = DataProviders.class, dataProvider = "linkedListData", description = "Verify that user is able to navigate to try editor page through each link")
 	public void tryEditorPge(String string) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		switch (string) {
 		case "Introduction":
 			linkedList.clickIntrodcution();
+			assertEquals(linkedList.getTitleIntroduction(), "Introduction");
+			logger.info("User is in Introduction page");
 			break;
 
 		case "Creating Linked List":
 			linkedList.creatingLinkedListClick();
+			assertEquals(linkedList.getTitleCreatingLinkedList(), "Creating Linked LIst");
+			logger.info("User is in Introduction page");
 			break;
 
 		case "Types of Linked List":
 			linkedList.typeOfLinkListinkClick();
+			assertEquals(linkedList.getTitleTypeOfLinked(), "Types of Linked List");
+			logger.info("User is in Types of Linked List page");
+			
 			break;
 
 		case "Implement Linked List in Python":
 			linkedList.implimentLinkedListClick();
+			assertEquals(linkedList.getTitleImplimentLinked(), "Implement Linked List in Python");
+			logger.info("User is in Implement Linked List in Python page");
 			break;
 
 		case "Traversal":
 			linkedList.traversalClick();
+			assertEquals(linkedList.getTitleTraversal(), "Traversal");
+			logger.info("User is in Traversal page");
 			break;
 
 		case "Insertion":
 			linkedList.insertionClick();
-
+			assertEquals(linkedList.getTitleInsertionLink(), "Insertion");
+			logger.info("User is in Insertion page");
 			break;
 
 		case "Deletion":
 			linkedList.deletionClick();
-		}
+			assertEquals(linkedList.getTitleDeletionLink(), "Deletion");
+			logger.info("User is in Deletion page");
+			
+			break;
+		
+	case "Practice Questions":
+		
+		linkedList.linkPracticeQstnClick();
+		
+		assertEquals(linkedList.linkPracticeQstnPageIdentify(), "Practice Questions");
+		logger.info("User is in Practice Questions page");
+		break;
+	}
 		linkedList.tryHereBtnClick();
 		linkedList.runBtnText();
 		assertEquals(linkedList.runBtnText(), "Run");
@@ -70,8 +94,7 @@ public class LinkedList_TestClass extends BaseClass {
 
 	}
 
-	@Test(priority = 2, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify that user is able to chech python code in try editor page through 'Introdcution' link")
+	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Introdcution' link")
 	public void OutputForPythonInCreatingLinkedListPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.clickIntrodcution();
@@ -87,8 +110,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify user able to check python code in try editor page through CreatingLinkedList link")
+	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through CreatingLinkedList link")
 	public void OutputForPythonInIntroductionPage(String inputText, String expectedOutput) {
 //		throw new SkipException("This test case is skipped");
 		linkedList.clcikGetStartedLinkedListBtn();
@@ -105,8 +127,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify user able to check python code in try editor page through 'TypesofLinkedListPage' link")
+	@Test(priority = 5, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through 'TypesofLinkedListPage' link")
 	public void OutputForPythonInITypesofLinkedListPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.typeOfLinkListinkClick();
@@ -122,8 +143,8 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 5, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify user  able to chech python code in try editor page through 'ImplementLnkedListinPython' link")
+	@Test(priority = 6, dataProviderClass = DataProviders.class, dataProvider = "EditorData",
+			 description = "Verify user  able to chech python code in try editor page through 'ImplementLnkedListinPython' link")
 	public void OutputForPythonInImplementLnkedListinPythonPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.implimentLinkedListClick();
@@ -139,8 +160,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 6, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify user is able to chech python code in try editor page through 'Traversal' link")
+	@Test(priority = 7, dataProviderClass = DataProviders.class, dataProvider = "EditorData",  description = "Verify user is able to chech python code in try editor page through 'Traversal' link")
 	public void OutputForPythonInTraversalPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.traversalClick();
@@ -156,8 +176,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 7, dataProviderClass = DataProviders.class, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify  user able to chech python code in try editor page through 'Insertion' link")
+	@Test(priority = 8, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify  user able to chech python code in try editor page through 'Insertion' link")
 	public void OutputForPythonInInsertionPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.insertionClick();
@@ -173,8 +192,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 8, dataProvider = "EditorData", dependsOnMethods = {
-			"tryEditorPge" }, description = "Verify that user is able to chech python code in try editor page through 'Deletion' link")
+	@Test(priority = 10, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Deletion' link")
 	public void OutputForPythonInDeletionPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.deletionClick();

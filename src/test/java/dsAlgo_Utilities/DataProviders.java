@@ -36,12 +36,12 @@ public class DataProviders {
 	
 	@DataProvider(name = "linkedListData")
 	public Object[][] linkedListData() {
-		return new Object[][] { { "Introduction" },{ "Creating Linked List" },{ "Types of Linked List" },{ "Implement Linked List in Python" }, { "Traversal" }, { "Insertion" }, { "Deletion" } };
+		return new Object[][] { { "Introduction" },{ "Creating Linked List" },{ "Types of Linked List" },{ "Implement Linked List in Python" }, { "Traversal" }, { "Insertion" }, { "Deletion" },{"Practice Questions"} };
 	}
 	@DataProvider(name = "stackData")
 	public Object[][] stackData() {
 		return new Object[][] { { "Operations in Stack" } ,
-			{ "Applications" },{"Implementation"}};
+			{ "Applications" },{"Implementation"},{"Practice Questions"}};
 	}
 	
 }

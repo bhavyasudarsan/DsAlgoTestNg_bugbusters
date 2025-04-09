@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Stack_PageFactory;
 import dsAlgo_Utilities.DataProviders;
+import dsAlgo_Utilities.RetryAnalyzer;
 
 public class Stack_TestClass extends BaseClass {
 
@@ -30,7 +31,7 @@ public class Stack_TestClass extends BaseClass {
 		logger.info("User is in the Stack  page");
 	}
 
-	@Test(priority = 2, dataProviderClass = DataProviders.class,dataProvider = "stackData", description = "Verify that user is able to navigate to try editor page through each link")
+	@Test(priority = 2, dataProviderClass = DataProviders.class,dataProvider = "stackData", retryAnalyzer = RetryAnalyzer.class, description = "Verify that user is able to navigate to try editor page through each link")
 	public void userInRespectiveLinkPage(String string) {
 		
 		stack.clickGetStartedStackBtn();
@@ -56,6 +57,15 @@ public class Stack_TestClass extends BaseClass {
 			logger.info("User is in Implementation page");
 			break;
 
+		
+	case "Practice Questions":
+		stack.linkPracticeQstnClick();
+		stack.linkPracticeQstnPageIdentify();
+
+		assertEquals(stack.linkPracticeQstnPageIdentify(), " Practice Questions ");
+		logger.info("User is in  Practice Questions  page");
+		break;
+		
 		}
 		stack.tryHereBtnClick();
 		assertEquals(stack.runBtnText(), "Run");
