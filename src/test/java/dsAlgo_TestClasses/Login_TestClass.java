@@ -2,8 +2,6 @@ package dsAlgo_TestClasses;
 
 import static org.testng.Assert.assertEquals;
 
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
