@@ -1,13 +1,11 @@
 package dsAlgo_TestClasses;
 
 import static org.testng.Assert.assertEquals;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Graph_PageFactory;
 import dsAlgo_Utilities.*;
@@ -15,23 +13,23 @@ import dsAlgo_Utilities.*;
 public class Graph_TestClass extends BaseClass {
 	Graph_PageFactory graph_PF;
 
-	private static final Logger logger = LoggerFactory.getLogger(Graph_PageFactory.class);
+private static final Logger logger = LoggerFactory.getLogger(Graph_PageFactory.class);
 		
 	@BeforeMethod
 	public void test() {
-		logger.info("User is in the signin page");
-		graph_PF = new Graph_PageFactory();
-		graph_PF.openLogin();
-	    graph_PF.SetUserName("bugbusters");
-		graph_PF.SetPassword("Team@bug");
-		graph_PF.ClickBtnLogin();
+	logger.info("User is in the signin page");
+	graph_PF = new Graph_PageFactory();
+	graph_PF.openLogin();
+	graph_PF.SetUserName("bugbusters");
+    graph_PF.SetPassword("Team@bug");
+	graph_PF.ClickBtnLogin();
 	}
 
 	@Test(priority = 1, description = " Verify that user is able to navigate to Graph page")
 	public void getTitle() {
-		graph_PF.ClickGraph();
-		assertEquals("Graph", graph_PF.getTitle());
-		logger.info("User is in the Graph page");
+	graph_PF.ClickGraph();
+	assertEquals("Graph", graph_PF.getTitle());
+	logger.info("User is in the Graph page");
 	}
 
 	@Test(priority = 2, dependsOnMethods = { "getTitle" }, dataProviderClass = DataProviders.class, dataProvider = "GraphData", retryAnalyzer = RetryAnalyzer.class)

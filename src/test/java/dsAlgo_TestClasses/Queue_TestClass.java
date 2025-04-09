@@ -1,13 +1,11 @@
 package dsAlgo_TestClasses;
 
 import static org.testng.Assert.assertEquals;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Queue_PageFactory;
 import dsAlgo_Utilities.*;
@@ -15,7 +13,7 @@ import dsAlgo_Utilities.*;
 public class Queue_TestClass extends BaseClass {
 	Queue_PageFactory queue_PF;
 
-	private static final Logger logger = LoggerFactory.getLogger(Queue_PageFactory.class);
+private static final Logger logger = LoggerFactory.getLogger(Queue_PageFactory.class);
 		
 	@BeforeMethod
 	public void test() {
