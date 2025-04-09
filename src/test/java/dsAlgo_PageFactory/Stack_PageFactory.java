@@ -98,6 +98,12 @@ public class Stack_PageFactory {
 	WebElement linkApplication;
 	@FindBy(xpath = "//p[text()='Applications']")
 	WebElement applicationsPageIdentifier;
+	@FindBy(xpath = "//*[text()='Practice Questions']")
+	WebElement linkPracticeQstn;
+	@FindBy(xpath = "/html/head/title")
+	WebElement linkPracticeQstnPageIdentifier;
+	
+
 
 	public void dropDownStack() {
 		dropdownMenu.click();
@@ -164,6 +170,15 @@ public class Stack_PageFactory {
 	public String implementationPageIdentify() {
 		return implementationPageIdentifier.getText();
 	}
+ 
+	public void linkPracticeQstnClick() {
+		linkPracticeQstn.click();
+	}
+	public String linkPracticeQstnPageIdentify() {
+		return linkPracticeQstnPageIdentifier.getText();
+	}
+ 
+
 
 	public void linkApplicationClick() {
 		linkApplication.click();
