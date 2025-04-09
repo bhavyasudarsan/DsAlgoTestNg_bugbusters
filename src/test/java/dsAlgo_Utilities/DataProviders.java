@@ -17,7 +17,6 @@ public class DataProviders {
     public static Object[][] loginDataProvider() throws IOException {
         return ExcelReader.readExcelData("Login");
     }
-  
 
     @DataProvider(name = "EditorData")
     public static Object[][] editorDataProvider() throws IOException {
@@ -43,5 +42,11 @@ public class DataProviders {
 		return new Object[][] { { "Operations in Stack" } ,
 			{ "Applications" },{"Implementation"},{"Practice Questions"}};
 	}
+	
+	@DataProvider(name = "RegisterData")
+    public Object[][] registerDataProvider() throws IOException {
+		
+        return ExcelReader.readExcelData("Register");
+    }
 	
 }
