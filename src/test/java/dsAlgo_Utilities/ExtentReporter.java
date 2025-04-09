@@ -35,6 +35,7 @@ public class ExtentReporter implements ISuiteListener, ITestListener {
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
+        result.setAttribute("extentTest", test);
     }
 
     @Override
@@ -53,7 +54,7 @@ public class ExtentReporter implements ISuiteListener, ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        test.skip(result.getThrowable());
+        test.skip(result.getThrowable());        
     }
 
 }
