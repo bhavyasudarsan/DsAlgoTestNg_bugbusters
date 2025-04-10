@@ -14,7 +14,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import dsAlgo_DriverFactory.Driver_Factory;
 import dsAlgo_Utilities.CommonUtils;
-import dsAlgo_Utilities.ExcelReader;
 
 public class Array_PageFactory {
 
@@ -90,15 +89,6 @@ public class Array_PageFactory {
 		}
 	}
 
-	public void invalidPythonCode(String sheetName,int row) {
-		Actions actions = new Actions(driver);
-		arrayData = ExcelReader.readExcelData(sheetName);
-		
-		String invalidInput = (String) arrayData[row][1];
-		actions.moveToElement(tryEditor).click().sendKeys(invalidInput).build().perform();
-		run();
-	}
-
 	public void tryEditorCode(String input) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(tryEditor).click().sendKeys(input).build().perform();
@@ -109,22 +99,6 @@ public class Array_PageFactory {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", output);
 		wait.until(ExpectedConditions.visibilityOf(output));
 		return (output.getText());
-	}
-//	public String expectedOutputFromExcel(String sheetName,int row) {
-//		arrayData = ExcelReader.readExcelData(sheetName);
-//		String output = (String)arrayData[row][2];
-//		return output;
-//	}
-	
-	public Object[] dataFromExcel(String sheetName,int row){
-		arrayData = ExcelReader.readExcelData(sheetName);
-		Object[] objArray = arrayData[row];
-		String input = (String) objArray[1];
-		String output = (String) objArray[2];
-		 return new Object[] {
-		        input, output 	        
-		    };
-		
 	}
 
 	public void practiceQuestions() {
@@ -165,22 +139,12 @@ public class Array_PageFactory {
 
 	public void validCodePracticeQuestions(String input) {
 		try {
-			
 			CommonUtils.enterCodePractice(driver, input, tryEditor);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-
-	public void invalidCodeSubmit(String sheetName,int row) {
-		arrayData = ExcelReader.readExcelData(sheetName);
-		Actions actions = new Actions(driver);
-		String codeFromExcel = (String) arrayData[row][1];
-		actions.moveToElement(tryEditor).click().sendKeys(codeFromExcel).build().perform();
-		submit.click();
-	}
-	
 
 	public void submit() {
 		submit.click();

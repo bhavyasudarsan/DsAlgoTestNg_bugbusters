@@ -26,20 +26,6 @@ public class Tree_PageFactory  {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath = "//button[@class='btn']")
-	WebElement getStartBtn;
-	@FindBy(xpath = "//a[text()='Sign in']")
-	WebElement signIn;
-	@FindBy(xpath = "//div[@class='bs-example']")
-	WebElement loginPage;
-	@FindBy(name = "username")
-	WebElement userName;
-	@FindBy(name = "password")
-	WebElement passWord;
-	@FindBy(xpath = "//input[@type=\"submit\"]")
-	WebElement login;
-	
-	
 	@FindBy(xpath = "//a[@href='tree']")
 	WebElement treeGetStarted;
 
@@ -82,28 +68,7 @@ public class Tree_PageFactory  {
 	@FindBy(linkText = "Practice Questions")
 	WebElement practiceQuestions;
 
-	
-	public void password(String password) {
-		passWord.sendKeys(password);
-	}
 
-	public void username(String username) {
-		userName.sendKeys(username);
-	}
-
-	public void Loginbtn() {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(login)).click();
-	}
-	
-	public void clickSignin() {
-		
-		getStartBtn.click();
-		signIn.click();
-		
-	}
-	
-	
 	public void treeGetStarted() {
 
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", treeGetStarted);
@@ -141,18 +106,6 @@ public class Tree_PageFactory  {
 		} catch (NoAlertPresentException e) {
 			 return "No alert found.";
 		}
-	}
-
-	public Object[] dataFromExcel(String sheetname,int row){
-		treeData = ExcelReader.readExcelData(sheetname);
-		Object[] objArray = treeData[row];
-		String input = (String) objArray[0];
-		String output = (String) objArray[1];
-		
-		 return new Object[] {
-		        input, output, 	        
-		    };
-		
 	}
 
 	public String output() {

@@ -5,11 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.Array_PageFactory;
+import dsAlgo_Utilities.DataProviders;
+import dsAlgo_Utilities.RetryAnalyzer;
 
 public class Array_TestClass extends BaseClass{
 	
@@ -17,19 +19,16 @@ public class Array_TestClass extends BaseClass{
 	List<Object[]> arrayData;
 	private static final Logger logger = LoggerFactory.getLogger(Array_TestClass.class);
 	
-//	@BeforeMethod
-	@Test(priority=1)
+	@BeforeMethod
 	public void arrayGetStarted() {
 		array=new Array_PageFactory();
 		validLogin();
 		array.arrayGetStarted();
-		System.out.println("Inside Array---");
+		logger.info("User is Inside Array Page---");
+		
 	}
 	
-	
-	
 	public void pageLink(String string) {
-		arrayGetStarted();
 		switch (string) {
 	case "Arrays in Python":
 		logger.info("Inside Arrays in Python");
@@ -55,71 +54,71 @@ public class Array_TestClass extends BaseClass{
 		array.tryHere();
 	}
 
-	@Test(priority = 2, dataProvider="ArrayExcelValidData")
+	@Test(priority = 1,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelValidData")
 	public void arraysInPythonvalidTryEditor(String input,String output) {
 		pageLink("Arrays in Python");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.output(), output);	
 	}
 
-	@Test(priority = 3, dataProvider="ArrayExcelInvalidData")
+	@Test(priority = 2,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelInvalidData",retryAnalyzer = RetryAnalyzer.class)
 	public void arraysInPythonInvalidTryEditor(String input,String output) {
 		pageLink("Arrays in Python");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.alertMessage(), output);	
 	}
 	
-	@Test(priority = 4, dataProvider="ArrayExcelValidData")
+	@Test(priority = 3,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelValidData")
 	public void arraysUsingListvalidTryEditor(String input,String output) {
 		pageLink("Arrays Using List");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.output(), output);	
 	}
 
-	@Test(priority = 5, dataProvider="ArrayExcelInvalidData")
+	@Test(priority = 4,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelInvalidData",retryAnalyzer = RetryAnalyzer.class)
 	public void arraysUsingListInvalidTryEditor(String input,String output) {
 		pageLink("Arrays Using List");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.alertMessage(), output);	
 	}
 	
-	@Test(priority = 6, dataProvider="ArrayExcelValidData")
+	@Test(priority = 5,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelValidData")
 	public void basicOperationsvalidTryEditor(String input,String output) {
 		pageLink("Basic Operations in Lists");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.output(), output);	
 	}
 
-	@Test(priority = 7, dataProvider="ArrayExcelInvalidData")
+	@Test(priority = 6,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelInvalidData",retryAnalyzer = RetryAnalyzer.class)
 	public void basicOperationsInvalidTryEditor(String input,String output) {
 		pageLink("Basic Operations in Lists");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.alertMessage(), output);	
 	}
 	
-	@Test(priority = 8, dataProvider="ArrayExcelValidData")
+	@Test(priority = 7,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelValidData")
 	public void applicationsArrayvalidTryEditor(String input,String output) {
 		pageLink("Applications of Array");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.output(), output);	
 	}
 
-	@Test(priority = 9, dataProvider="ArrayExcelInvalidData")
+	@Test(priority = 8,dataProviderClass = DataProviders.class,dataProvider="ArrayExcelInvalidData",retryAnalyzer = RetryAnalyzer.class)
 	public void applicationsArrayInvalidTryEditor(String input,String output) {
 		pageLink("Applications of Array");
 		array.tryEditorCode(input);
 		Assert.assertEquals(array.alertMessage(), output);	
 	}
 	
-	@Test(priority=10)
+	@Test(priority=9)
 	public void arrayPracticeQuestion() {
-		arrayGetStarted();
 		array.arraysInPython();
 		array.practiceQuestions();
+		logger.info("Practice Question page");
 		Assert.assertEquals(array.getTitle(), "Practice Questions");	
 	}
 	
-	@Test(priority=11,dataProvider="SearchArrayInvalidData")
+	@Test(priority=10,dataProviderClass = DataProviders.class,dataProvider="SearchArrayInvalidData",retryAnalyzer = RetryAnalyzer.class)
 	public void searchTheArrayInvalidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.searchTheArray();
@@ -128,7 +127,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 	
-	@Test(priority=12,dataProvider="SearchArrayValidData")
+	@Test(priority=11,dataProviderClass = DataProviders.class,dataProvider="SearchArrayValidData",retryAnalyzer = RetryAnalyzer.class)
 	public void searchTheArrayValidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.searchTheArray();
@@ -137,7 +136,7 @@ public class Array_TestClass extends BaseClass{
 		Assert.assertEquals(array.output(), output);
 	}
 	
-	@Test(priority=13,dataProvider="SearchArraySubmit")
+	@Test(priority=12,dataProviderClass = DataProviders.class,dataProvider="SearchArraySubmit",retryAnalyzer = RetryAnalyzer.class)
 	public void searchTheArraySubmitTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.searchTheArray();
@@ -147,7 +146,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 	
-	@Test(priority=14,dataProvider="MaxConsecutiveInvalidRun")
+	@Test(priority=13,dataProviderClass = DataProviders.class,dataProvider="MaxConsecutiveInvalidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void maxConsecutiveInvalidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.maxConsecutiveOnes();
@@ -156,7 +155,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 
-	@Test(priority=15,dataProvider="MaxConsecutiveValidRun")
+	@Test(priority=14,dataProviderClass = DataProviders.class,dataProvider="MaxConsecutiveValidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void maxConsecutiveValidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.maxConsecutiveOnes();
@@ -168,7 +167,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 	
-	@Test(priority=16,dataProvider="MaxConsecutiveSubmit")
+	@Test(priority=15,dataProviderClass = DataProviders.class,dataProvider="MaxConsecutiveSubmit",retryAnalyzer = RetryAnalyzer.class)
 	public void maxConsecutiveSubmitTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.maxConsecutiveOnes();
@@ -177,7 +176,7 @@ public class Array_TestClass extends BaseClass{
 		Assert.assertEquals(array.output(), output);
 	}
 	
-	@Test(priority=17,dataProvider="EvenNumberInvalidRun")
+	@Test(priority=16,dataProviderClass = DataProviders.class,dataProvider="EvenNumberInvalidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void evenNumberInvalidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.findNumberswithEvenNumberofDigits();
@@ -186,7 +185,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 
-	@Test(priority=18,dataProvider="EvenNumberValidRun")
+	@Test(priority=17,dataProviderClass = DataProviders.class,dataProvider="EvenNumberValidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void evenNumberValidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.findNumberswithEvenNumberofDigits();
@@ -198,7 +197,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 	
-	@Test(priority=19,dataProvider="EvenNumberSubmit")
+	@Test(priority=18,dataProviderClass = DataProviders.class,dataProvider="EvenNumberSubmit",retryAnalyzer = RetryAnalyzer.class)
 	public void evenNumberSubmitTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.findNumberswithEvenNumberofDigits();
@@ -207,7 +206,7 @@ public class Array_TestClass extends BaseClass{
 		Assert.assertEquals(array.output(), output);
 	}
 	
-	@Test(priority=20,dataProvider="SortedArrayInvalidRun")
+	@Test(priority=19,dataProviderClass = DataProviders.class,dataProvider="SortedArrayInvalidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void sortedArrayInvalidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.squaresOfaSortedArray();
@@ -216,7 +215,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 
-	@Test(priority=21,dataProvider="SortedArrayValidRun")
+	@Test(priority=20,dataProviderClass = DataProviders.class,dataProvider="SortedArrayValidRun",retryAnalyzer = RetryAnalyzer.class)
 	public void sortedArrayValidTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.squaresOfaSortedArray();
@@ -226,7 +225,7 @@ public class Array_TestClass extends BaseClass{
 		
 	}
 	
-	@Test(priority=22,dataProvider="SortedArraySubmit")
+	@Test(priority=21,dataProviderClass = DataProviders.class,dataProvider="SortedArraySubmit",retryAnalyzer = RetryAnalyzer.class)
 	public void sortedArraySubmitTryEditor (String input,String output) {
 		arrayPracticeQuestion();
 		array.squaresOfaSortedArray();
@@ -235,70 +234,4 @@ public class Array_TestClass extends BaseClass{
 		Assert.assertEquals(array.output(), output);
 	}
 	
-	@DataProvider(name = "ArrayExcelValidData")
-	public Object[][] validCodeFromExcel() {
-		return new Object[][] {array.dataFromExcel("Array", 16)};
-	   
 	}
-	
-	@DataProvider(name = "ArrayExcelInvalidData")
-	public Object[][] invalidCodeFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 17),array.dataFromExcel("Array", 18)};
-	}	
-	
-	@DataProvider(name = "SearchArrayInvalidData")
-	public Object[][] searchArrayFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 1)};
-	}
-	
-	@DataProvider(name = "SearchArrayValidData")
-	public Object[][] searchArrayValidFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 0)};
-	}
-	
-	@DataProvider(name = "SearchArraySubmit")
-	public Object[][] searchArraySubmitFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 2),array.dataFromExcel("Array", 3)};
-	}
-
-	@DataProvider(name="MaxConsecutiveInvalidRun")
-	public Object[][] maxConsecutiveInvalidData(){
-		return new Object[][] {array.dataFromExcel("Array", 5)};
-		
-	}
-	@DataProvider(name = "MaxConsecutiveValidRun")
-	public Object[][] maxConsecutiveValidData() {
-		return new Object[][]{ array.dataFromExcel("Array", 4)};
-	}
-	@DataProvider(name = "MaxConsecutiveSubmit")
-	public Object[][] maxConsecutiveSubmitFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 6),array.dataFromExcel("Array", 7)};
-	}
-	@DataProvider(name="EvenNumberInvalidRun")
-	public Object[][] EvenNumberInvalidData(){
-		return new Object[][] {array.dataFromExcel("Array", 9)};
-		
-	}
-	@DataProvider(name = "EvenNumberValidRun")
-	public Object[][] EvenNumberValidData() {
-		return new Object[][]{ array.dataFromExcel("Array", 8)};
-	}
-	@DataProvider(name = "EvenNumberSubmit")
-	public Object[][] EvenNumberSubmitFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 10),array.dataFromExcel("Array", 11)};
-	}
-	
-	@DataProvider(name="SortedArrayInvalidRun")
-	public Object[][] SortedArrayInvalidData(){
-		return new Object[][] {array.dataFromExcel("Array", 13)};
-		
-	}
-	@DataProvider(name = "SortedArrayValidRun")
-	public Object[][] SortedArrayValidData() {
-		return new Object[][]{ array.dataFromExcel("Array", 12)};
-	}
-	@DataProvider(name = "SortedArraySubmit")
-	public Object[][] SortedArraySubmitFromExcel() {
-		return new Object[][]{ array.dataFromExcel("Array", 14),array.dataFromExcel("Array", 15)};
-	}
-}
