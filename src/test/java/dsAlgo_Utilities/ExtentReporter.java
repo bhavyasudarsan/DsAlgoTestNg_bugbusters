@@ -43,14 +43,14 @@ public class ExtentReporter implements ISuiteListener, ITestListener {
         test.pass("Test passed");
     }
 
-    @Override
-    public void onTestFailure(ITestResult result) {        
-        WebDriver driver = Driver_Factory.getDriverInstance();
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		if (screenshotFile != null && screenshotFile.exists()) {	
-            test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
-		}
-    }
+//    @Override
+//    public void onTestFailure(ITestResult result) {        
+//        WebDriver driver = Driver_Factory.getDriverInstance();
+//        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+//		if (screenshotFile != null && screenshotFile.exists()) {	
+//            test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
+//		}
+//    }
 
     @Override
     public void onTestSkipped(ITestResult result) {
