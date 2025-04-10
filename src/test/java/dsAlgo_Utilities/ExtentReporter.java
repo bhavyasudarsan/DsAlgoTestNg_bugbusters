@@ -4,23 +4,22 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-
 import dsAlgo_DriverFactory.Driver_Factory;
 import tech.grasshopper.reporter.ExtentPDFReporter;
-
 import java.io.File;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.SessionId;
 import org.testng.*;
 
 public class ExtentReporter implements ISuiteListener, ITestListener {
-    private ExtentReports extent;
-    private ExtentTest test;    
+private ExtentReports extent;
+private ExtentTest test;    
 
-    @Override
-    public void onStart(ISuite suite) {
+@Override
+  public void onStart(ISuite suite) {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("extent.html");
         ExtentPDFReporter pdfReporter = new ExtentPDFReporter("extent.pdf");
         extent = new ExtentReports();
@@ -44,15 +43,27 @@ public class ExtentReporter implements ISuiteListener, ITestListener {
     }
 
     @Override
-    public void onTestFailure(ITestResult result) {        
+    public void onTestFailure(ITestResult result) {
         WebDriver driver = Driver_Factory.getDriverInstance();
-        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		if (screenshotFile != null && screenshotFile.exists()) {	
-            test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
-		}
+        if (driver != null && driver instanceof RemoteWebDriver) {
+            SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
+            if (sessionId != null) {
+                try {
+                    File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                    if (screenshotFile != null && screenshotFile.exists()) {
+                        test.fail(result.getThrowable(),
+                            MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
+                    }
+                } catch (Exception e) {
+                    System.out.println("Screenshot capture failed: " + e.getMessage());
+                }
+            } else {
+                System.out.println("WebDriver session is null, skipping screenshot.");
+            }
+        }
     }
-
-    @Override
+    
+   @Override
     public void onTestSkipped(ITestResult result) {
         test.skip(result.getThrowable());        
     }
