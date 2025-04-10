@@ -89,6 +89,10 @@ public class LinkedList_PageFactory {
 	WebElement deletionLink;
 	@FindBy(xpath = "//p[text()='Deletion']")
 	WebElement titleDeletion;
+	@FindBy(xpath = "//*[text()='Practice Questions']")
+	WebElement linkPracticeQstn;
+	@FindBy(xpath = "/html/head/title")
+	WebElement linkPracticeQstnPageIdentifier;
 
 	public void ClickGetStBtn() {
 		getStartBtn.click();
@@ -214,7 +218,12 @@ public class LinkedList_PageFactory {
 	public void traversalClick() {
 		traversalLink.click();
 	}
-
+	public void linkPracticeQstnClick() {
+		linkPracticeQstn.click();
+	}
+	public String linkPracticeQstnPageIdentify() {
+		return linkPracticeQstnPageIdentifier.getText();
+	}
 	public String getTitleTraversal() {
 		return titleTraversal.getText();
 	}
