@@ -4,9 +4,12 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+
 import dsAlgo_DriverFactory.Driver_Factory;
 import tech.grasshopper.reporter.ExtentPDFReporter;
+
 import java.io.File;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,11 +18,11 @@ import org.openqa.selenium.remote.SessionId;
 import org.testng.*;
 
 public class ExtentReporter implements ISuiteListener, ITestListener {
-private ExtentReports extent;
-private ExtentTest test;    
+	private ExtentReports extent;
+	private ExtentTest test;    
 
-@Override
-  public void onStart(ISuite suite) {
+	@Override
+	public void onStart(ISuite suite) {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("extent.html");
         ExtentPDFReporter pdfReporter = new ExtentPDFReporter("extent.pdf");
         extent = new ExtentReports();
@@ -63,7 +66,7 @@ private ExtentTest test;
         }
     }
     
-   @Override
+    @Override
     public void onTestSkipped(ITestResult result) {
         test.skip(result.getThrowable());        
     }
