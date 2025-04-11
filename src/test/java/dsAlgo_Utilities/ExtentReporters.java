@@ -17,14 +17,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.testng.*;
 
-public class ExtentReporter implements ISuiteListener, ITestListener {
- private ExtentReports extent;
- private ExtentTest test;    
+public class ExtentReporters implements ISuiteListener, ITestListener {
+	private ExtentReports extent;
+	private ExtentTest test;    
 
- @Override
- public void onStart(ISuite suite) {
-        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("extent.html");
-        ExtentPDFReporter pdfReporter = new ExtentPDFReporter("extent.pdf");
+ 	@Override
+ 	public void onStart(ISuite suite) {
+        ExtentSparkReporter sparkReporter = new ExtentSparkReporter("ExtentReports/extent.html");
+        ExtentPDFReporter pdfReporter = new ExtentPDFReporter("ExtentReports/extent.pdf");
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter, pdfReporter);
     }
