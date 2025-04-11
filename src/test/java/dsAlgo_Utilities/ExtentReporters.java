@@ -63,9 +63,9 @@ public class ExtentReporters implements ISuiteListener, ITestListener {
        }  
     }
     
-//    @Override
-//    public void onTestSkipped(ITestResult result) {
-//        test.skip(result.getThrowable());        
-//    }
+    @Override
+    public void onTestSkipped(ITestResult result) {
+        test.skip(result.getThrowable());        
+    }
 
 }
