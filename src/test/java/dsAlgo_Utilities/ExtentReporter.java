@@ -18,11 +18,11 @@ import org.openqa.selenium.remote.SessionId;
 import org.testng.*;
 
 public class ExtentReporter implements ISuiteListener, ITestListener {
-	private ExtentReports extent;
-	private ExtentTest test;    
+ private ExtentReports extent;
+ private ExtentTest test;    
 
-	@Override
-	public void onStart(ISuite suite) {
+ @Override
+ public void onStart(ISuite suite) {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter("extent.html");
         ExtentPDFReporter pdfReporter = new ExtentPDFReporter("extent.pdf");
         extent = new ExtentReports();
