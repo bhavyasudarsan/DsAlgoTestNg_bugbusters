@@ -31,7 +31,12 @@ public class ExtentReporters implements ISuiteListener, ITestListener {
 
     @Override
     public void onFinish(ISuite suite) {
-        extent.flush();
+    	try {
+    		extent.flush();
+    	}
+    	catch (Exception e) {
+            test.info("Extent flush failed: " + e.getMessage());
+        } 
     }
 
     @Override
@@ -58,10 +63,8 @@ public class ExtentReporters implements ISuiteListener, ITestListener {
                             MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
                     }
                 } catch (Exception e) {
-                    System.out.println("Screenshot capture failed: " + e.getMessage());
+                    test.info("Screenshot capture failed: " + e.getMessage());
                 }
-            } else {
-                System.out.println("WebDriver session is null, skipping screenshot.");
             }
         }
     }
