@@ -52,21 +52,16 @@ public class ExtentReporters implements ISuiteListener, ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        WebDriver driver = Driver_Factory.getDriverInstance();
-        if (driver != null && driver instanceof RemoteWebDriver) {
-            SessionId sessionId = ((RemoteWebDriver) driver).getSessionId();
-            if (sessionId != null) {
-                try {
-                    File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                    if (screenshotFile != null && screenshotFile.exists()) {
-                        test.fail(result.getThrowable(),
-                            MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
-                    }
-                } catch (Exception e) {
-                    test.info("Screenshot capture failed: " + e.getMessage());
-                }
-            }
-        }
+       WebDriver driver = Driver_Factory.getDriverInstance();
+       try {
+	       File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	       if (screenshotFile != null && screenshotFile.exists()) {
+	            test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
+	       }
+       } 
+       catch (Exception e) {
+    	   test.info("Screenshot capture failed: " + e.getMessage());
+       }  
     }
     
     @Override
