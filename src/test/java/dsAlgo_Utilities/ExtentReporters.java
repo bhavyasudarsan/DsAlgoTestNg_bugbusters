@@ -55,7 +55,8 @@ public class ExtentReporters implements ISuiteListener, ITestListener {
        try {
 	       File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 	       if (screenshotFile != null && screenshotFile.exists()) {
-	            test.fail(result.getThrowable(), MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
+	            test.fail(result.getThrowable()); 
+	            test.fail(MediaEntityBuilder.createScreenCaptureFromPath(screenshotFile.getAbsolutePath()).build());
 	       }
        } 
        catch (Exception e) {
