@@ -1,6 +1,7 @@
 package dsAlgo_PageFactory;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -142,7 +143,15 @@ public class Stack_PageFactory {
 	}
 
 	public String runBtnText() {
-		return runBtn.getText();
+		
+try {
+	return runBtn.getText();
+
+}
+ catch (NoSuchElementException e) {
+	 return "No such Element found.";
+}
+//		return runBtn.getText();
 	}
 	public String alertMessage() {
 		try {

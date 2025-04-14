@@ -1,9 +1,8 @@
 package dsAlgo_TestClasses;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import dsAlgo_BaseClass.BaseClass;
@@ -70,9 +69,13 @@ public class Stack_TestClass extends BaseClass {
 		stack.tryHereBtnClick();
 		assertEquals(stack.runBtnText(), "Run");
 		logger.info("User is in Try Editor page");
-	}
+		stack.runBtnClick();
 
-	@Test(priority = 3,dataProviderClass = DataProviders.class,dataProvider = "EditorData")
+	}
+	
+	
+
+	@Test(priority = 3,dataProviderClass = DataProviders.class,dataProvider = "EditorData",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInOperationsinStack(String inputText, String expectedOutput) {
 		stack.clickGetStartedStackBtn();
 		stack.operationLinkBtnClick();
@@ -80,7 +83,7 @@ public class Stack_TestClass extends BaseClass {
 		stack.inputEditor(inputText);
 		stack.runBtnClick();
 		if (expectedOutput.contains("NameError:")) {
-			Assert.assertEquals(expectedOutput, stack.alertMessage());
+			assertEquals(expectedOutput, stack.alertMessage());
 		} else {
 			assertEquals(expectedOutput, stack.console());
 			logger.info(expectedOutput);
@@ -88,7 +91,7 @@ public class Stack_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 4, dataProviderClass = DataProviders.class,dataProvider = "EditorData")
+	@Test(priority = 4, dataProviderClass = DataProviders.class,dataProvider = "EditorData",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInApplication(String inputText, String expectedOutput) {
 		stack.clickGetStartedStackBtn();
 		stack.linkApplicationClick();
@@ -96,7 +99,7 @@ public class Stack_TestClass extends BaseClass {
 		stack.inputEditor(inputText);
 		stack.runBtnClick();
 		if (expectedOutput.contains("NameError:")) {
-			Assert.assertEquals(expectedOutput, stack.alertMessage());
+			assertEquals(expectedOutput, stack.alertMessage());
 		} else {
 			assertEquals(expectedOutput, stack.console());
 			logger.info(expectedOutput);
@@ -104,7 +107,7 @@ public class Stack_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 5,dataProviderClass = DataProviders.class, dataProvider = "EditorData")
+	@Test(priority = 5,dataProviderClass = DataProviders.class, dataProvider = "EditorData",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInImplementation(String inputText, String expectedOutput) {
 		stack.clickGetStartedStackBtn();
 		stack.linkImplementationClick();
@@ -114,7 +117,7 @@ public class Stack_TestClass extends BaseClass {
 		String alert = stack.alertMessage();
 		logger.info(alert);
 		if (expectedOutput.contains("NameError:")) {
-			Assert.assertEquals(expectedOutput, stack.alertMessage());
+			assertEquals(expectedOutput, stack.alertMessage());
 		} else {
 			assertEquals(expectedOutput, stack.console());
 			logger.info(expectedOutput);

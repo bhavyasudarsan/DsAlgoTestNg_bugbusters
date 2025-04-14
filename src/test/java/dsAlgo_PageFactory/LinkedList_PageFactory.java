@@ -2,6 +2,7 @@
 package dsAlgo_PageFactory;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
@@ -157,10 +158,19 @@ public class LinkedList_PageFactory {
 		tryHereBtn.click();
 	}
 
+//	public String runBtnText() {
+//		return runBtn.getText();
+//	}
 	public String runBtnText() {
-		return runBtn.getText();
-	}
+		
+		try {
+			return runBtn.getText();
 
+		}
+		 catch (NoSuchElementException e) {
+			 return "No such Element found.";
+		}
+	}
 	public void runBtnClick() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.visibilityOf(runBtn)).click();
