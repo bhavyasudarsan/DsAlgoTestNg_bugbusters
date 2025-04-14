@@ -6,8 +6,7 @@
 		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
 		<listener class-name="dsAlgo_Utilities.ExtentReporters"/>
 </listeners>
-  <test thread-count="5" name="Test">
-
+  <test name="Test">
     <classes>      
       <class name="dsAlgo_TestClasses.LinkedList_TestClass"/>
       <class name="dsAlgo_TestClasses.Array_TestClass"/>
