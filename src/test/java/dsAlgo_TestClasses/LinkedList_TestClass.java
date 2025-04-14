@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import dsAlgo_BaseClass.BaseClass;
 import dsAlgo_PageFactory.LinkedList_PageFactory;
 import dsAlgo_Utilities.DataProviders;
+import dsAlgo_Utilities.RetryAnalyzer;
 
 public class LinkedList_TestClass extends BaseClass {
 
@@ -94,7 +95,7 @@ public class LinkedList_TestClass extends BaseClass {
 
 	}
 
-	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Introdcution' link")
+	@Test(priority = 3, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Introdcution' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInCreatingLinkedListPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.clickIntrodcution();
@@ -110,7 +111,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through CreatingLinkedList link")
+	@Test(priority = 4, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through CreatingLinkedList link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInIntroductionPage(String inputText, String expectedOutput) {
 //		throw new SkipException("This test case is skipped");
 		linkedList.clcikGetStartedLinkedListBtn();
@@ -127,7 +128,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 5, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through 'TypesofLinkedListPage' link")
+	@Test(priority = 5, dataProviderClass = DataProviders.class, dataProvider = "EditorData",description = "Verify user able to check python code in try editor page through 'TypesofLinkedListPage' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInITypesofLinkedListPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.typeOfLinkListinkClick();
@@ -144,7 +145,7 @@ public class LinkedList_TestClass extends BaseClass {
 	}
 
 	@Test(priority = 6, dataProviderClass = DataProviders.class, dataProvider = "EditorData",
-			 description = "Verify user  able to chech python code in try editor page through 'ImplementLnkedListinPython' link")
+			 description = "Verify user  able to chech python code in try editor page through 'ImplementLnkedListinPython' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInImplementLnkedListinPythonPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.implimentLinkedListClick();
@@ -160,7 +161,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 7, dataProviderClass = DataProviders.class, dataProvider = "EditorData",  description = "Verify user is able to chech python code in try editor page through 'Traversal' link")
+	@Test(priority = 7, dataProviderClass = DataProviders.class, dataProvider = "EditorData",  description = "Verify user is able to chech python code in try editor page through 'Traversal' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInTraversalPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.traversalClick();
@@ -176,7 +177,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 8, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify  user able to chech python code in try editor page through 'Insertion' link")
+	@Test(priority = 8, dataProviderClass = DataProviders.class, dataProvider = "EditorData", description = "Verify  user able to chech python code in try editor page through 'Insertion' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInInsertionPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.insertionClick();
@@ -192,7 +193,7 @@ public class LinkedList_TestClass extends BaseClass {
 		}
 	}
 
-	@Test(priority = 10, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Deletion' link")
+	@Test(priority = 10, dataProvider = "EditorData", description = "Verify that user is able to chech python code in try editor page through 'Deletion' link",retryAnalyzer = RetryAnalyzer.class)
 	public void OutputForPythonInDeletionPage(String inputText, String expectedOutput) {
 		linkedList.clcikGetStartedLinkedListBtn();
 		linkedList.deletionClick();
