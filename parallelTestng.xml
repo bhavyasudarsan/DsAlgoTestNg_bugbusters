@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="ParallelSuite" parallel="classes" thread-count="4">
+<listeners>
+<listener class-name="dsAlgo_Utilities.Listeners"></listener>
+		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
+		<listener class-name="dsAlgo_Utilities.ExtentReporters"/>
+</listeners>
     <test name="Chrome Test">
         <parameter name="browserType" value="Chrome" />
         <classes>
@@ -9,7 +14,7 @@
             <class name="dsAlgo_TestClasses.DataStructure_TestClass" />
             <class name="dsAlgo_TestClasses.Graph_TestClass"/>
             <class name="dsAlgo_TestClasses.Home_TestClass" />
-            <class name="dsAlgo_TestClasses.LinkedList_TestClass"/>
+            <class name="dsAlgo_TestClasses.LinkedList_TestClass"/>  
             <class name="dsAlgo_TestClasses.Login_TestClass" />
             <class name="dsAlgo_TestClasses.Queue_TestClass"/>
             <class name="dsAlgo_TestClasses.Register_TestClass" />
