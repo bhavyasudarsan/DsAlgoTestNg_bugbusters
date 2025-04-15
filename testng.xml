@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-  <listeners>
-<listener class-name="dsAlgo_Utilities.Listeners"></listener>
-		<listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>
-		<listener class-name="dsAlgo_Utilities.ExtentReporters"/>
-</listeners>
-  <test thread-count="5" name="Test">
+	<listeners>
+		<listener class-name="dsAlgo_Utilities.Listeners"></listener>
+		<listener
+			class-name="com.aventstack.chaintest.plugins.ChainTestListener" />
+		<listener class-name="dsAlgo_Utilities.ExtentReporters" />
+	</listeners>
+	<test name="Test">
 
-    <classes>      
-      <class name="dsAlgo_TestClasses.LinkedList_TestClass"/>
-      <class name="dsAlgo_TestClasses.Array_TestClass"/>
-      <class name="dsAlgo_TestClasses.DataStructure_TestClass"/>
-      <class name="dsAlgo_TestClasses.Graph_TestClass"/>
-      <class name="dsAlgo_TestClasses.Home_TestClass"/>
-      <class name="dsAlgo_TestClasses.Login_TestClass"/>
-      <class name="dsAlgo_TestClasses.Queue_TestClass"/>
-      <class name="dsAlgo_TestClasses.Register_TestClass"/>
-       <class name="dsAlgo_TestClasses.Stack_TestClass"/>
-       <class name="dsAlgo_TestClasses.Tree_TestClass"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+		<classes>
+			<class name="dsAlgo_TestClasses.Home_TestClass" />
+			<class name="dsAlgo_TestClasses.Register_TestClass" />
+			<class name="dsAlgo_TestClasses.Login_TestClass" />
+			<class name="dsAlgo_TestClasses.Array_TestClass" />
+			<class name="dsAlgo_TestClasses.DataStructure_TestClass" />
+			<class name="dsAlgo_TestClasses.Graph_TestClass" />
+			<class name="dsAlgo_TestClasses.Queue_TestClass" />
+			<class name="dsAlgo_TestClasses.Stack_TestClass" />
+			<class name="dsAlgo_TestClasses.LinkedList_TestClass" />
+			<class name="dsAlgo_TestClasses.Tree_TestClass" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
