@@ -15,7 +15,7 @@ public class Driver_Factory {
 
 
 	private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-	static ConfigReader configReader;
+	static ConfigReader configReader ;
 
 	private static final Logger logger = LoggerFactory.getLogger(Driver_Factory.class);
 	public final static int TIMEOUT = 2;
